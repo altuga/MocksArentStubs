@@ -1,6 +1,5 @@
 package com.kodcu.com;
 
-import org.jmock.Mock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -16,20 +15,20 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderInteractionTesterMockito  {
-    private static String TALISKER = "Talisker";
+    private static String ISTANBUL = "Istanbul";
 
     @org.mockito.Mock
-    Warehouse warehouseMock;
+    Depo taklitDepo;
 
     @Test
     public void testFillingRemovesInventoryIfInStock() {
         //setup - data
-        Order order = new Order(TALISKER, 50);
-        when(warehouseMock.setQuantity(TALISKER, 50)).thenReturn(true);
+        Siparis order = new Siparis(ISTANBUL, 50);
+        when(taklitDepo.setQuantity(ISTANBUL, 50)).thenReturn(true);
 
-        order.fill(warehouseMock);
+        order.fill(taklitDepo);
         assertTrue(order.isFilled());
-        assertEquals(0, warehouseMock.getInventory(TALISKER));
+        assertEquals(0, taklitDepo.getInventory(ISTANBUL));
 
 
     }
@@ -37,14 +36,14 @@ public class OrderInteractionTesterMockito  {
     @Test
     public void testFillingDoesNotRemoveIfNotEnoughInStock() {
         //setup - data
-        Order order = new Order(TALISKER, 51);
+        Siparis order = new Siparis(ISTANBUL, 51);
 
-        when(warehouseMock.setQuantity(TALISKER, 50)).thenReturn(true);
-        when(warehouseMock.getInventory(TALISKER)).thenReturn(50);
+        when(taklitDepo.setQuantity(ISTANBUL, 50)).thenReturn(true);
+        when(taklitDepo.getInventory(ISTANBUL)).thenReturn(50);
 
-        order.fill(warehouseMock); // SUT - System Under Test
+        order.fill(taklitDepo); // SUT - System Under Test
         assertFalse(order.isFilled());
-        assertEquals(50, warehouseMock.getInventory(TALISKER));
-        verify(warehouseMock).getInventory(TALISKER);
+        assertEquals(50, taklitDepo.getInventory(ISTANBUL));
+        verify(taklitDepo).getInventory(ISTANBUL);
     }
 }
