@@ -12,9 +12,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
-/**
- * Created by altuga on 24/05/2017.
- */
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderInteractionTesterMockito  {

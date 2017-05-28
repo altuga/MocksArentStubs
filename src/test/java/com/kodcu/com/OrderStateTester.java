@@ -1,32 +1,39 @@
 package com.kodcu.com;
 
-import junit.framework.TestCase;
 
-/**
- * Created by altuga on 23/05/2017.
- */
-public class OrderStateTester extends TestCase {
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+
+@RunWith(JUnit4.class)
+public class OrderStateTester {
     private static String TALISKER = "Talisker";
     private static String HIGHLAND_PARK = "Highland Park";
     private Warehouse warehouse = new WarehouseImpl();
 
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         warehouse.add(TALISKER, 50);
         warehouse.add(HIGHLAND_PARK, 25);
     }
 
+    @Test
     public void testOrderIsFilledIfEnoughInWarehouse() {
         Order order = new Order(TALISKER, 50);
         order.fill(warehouse);
-        assertTrue(order.isFilled());
-        assertEquals(0, warehouse.getInventory(TALISKER));
+        Assert.assertTrue(order.isFilled());
+        Assert.assertEquals(0, warehouse.getInventory(TALISKER));
     }
 
+    @Test
     public void testOrderDoesNotRemoveIfNotEnough() {
         Order order = new Order(TALISKER, 51);
         order.fill(warehouse);
-        assertFalse(order.isFilled());
-        assertEquals(50, warehouse.getInventory(TALISKER));
+        Assert.assertFalse(order.isFilled());
+        Assert.assertEquals(50, warehouse.getInventory(TALISKER));
     }
 }
 
