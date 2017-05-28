@@ -22,17 +22,17 @@ public class OrderStateTester {
 
     @Test
     public void testOrderIsFilledIfEnoughInWarehouse() {
-        Siparis order = new Siparis(ISTANBUL, 50);
-        order.fill(depo);
-        Assert.assertTrue(order.isFilled());
+        Siparis siparis = new Siparis(ISTANBUL, 50);
+        siparis.fill(depo);
+        Assert.assertTrue(siparis.isFilled());
         Assert.assertEquals(0, depo.getInventory(ISTANBUL));
     }
 
     @Test
     public void testOrderDoesNotRemoveIfNotEnough() {
-        Siparis order = new Siparis(ISTANBUL, 51);
-        order.fill(depo);
-        Assert.assertFalse(order.isFilled());
+        Siparis siparis = new Siparis(ISTANBUL, 51);
+        siparis.fill(depo);
+        Assert.assertFalse(siparis.isFilled());
         Assert.assertEquals(50, depo.getInventory(ISTANBUL));
     }
 }

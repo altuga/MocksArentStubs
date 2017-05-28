@@ -36,13 +36,13 @@ public class OrderInteractionTesterMockito  {
     @Test
     public void testFillingDoesNotRemoveIfNotEnoughInStock() {
         //setup - data
-        Siparis order = new Siparis(ISTANBUL, 51);
+        Siparis siparis = new Siparis(ISTANBUL, 51);
 
         when(taklitDepo.setQuantity(ISTANBUL, 50)).thenReturn(true);
         when(taklitDepo.getInventory(ISTANBUL)).thenReturn(50);
 
-        order.fill(taklitDepo); // SUT - System Under Test
-        assertFalse(order.isFilled());
+        siparis.fill(taklitDepo); // SUT - System Under Test
+        assertFalse(siparis.isFilled());
         assertEquals(50, taklitDepo.getInventory(ISTANBUL));
         verify(taklitDepo).getInventory(ISTANBUL);
     }
