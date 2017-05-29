@@ -3,9 +3,7 @@ package com.kodcu.com;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by altuga on 23/05/2017.
- */
+
 public class DepoImpl implements Depo {
 
 

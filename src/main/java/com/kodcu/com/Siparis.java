@@ -1,8 +1,6 @@
 package com.kodcu.com;
 
-/**
- * Created by altuga on 23/05/2017.
- */
+
 public class Siparis {
 
     public String name;
