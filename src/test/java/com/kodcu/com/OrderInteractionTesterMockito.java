@@ -45,5 +45,6 @@ public class OrderInteractionTesterMockito  {
         assertFalse(siparis.isFilled());
         assertEquals(50, taklitDepo.getInventory(ISTANBUL));
         verify(taklitDepo).getInventory(ISTANBUL);
+
     }
 }
